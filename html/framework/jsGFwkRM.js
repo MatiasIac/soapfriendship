@@ -82,7 +82,7 @@ jsGFwk.ResourceManager = {
 						jsGFwk.ResourceManager.sounds[soundSource].audio.src = jsGFwk.ResourceManager.sounds[soundSource].source;
 					}
 				}
-			}, 2000);
+			}, 0);
 		},
 		
 		onResourcesLoadedCompleted: function () {},
