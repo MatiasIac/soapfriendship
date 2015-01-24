@@ -68,9 +68,16 @@ window.onload = function init() {
 					left: 10, top: 477, width: 284, height: 158 });
 		  
 				players = jsGFwk.Container.createContainer("players", player);
-
+				
+				var timer = new StartGameTimer(5, 40, function startCallback() {
+					players.eachCloned(function(clone) {
+						clone.enabled = true;
+					});
+				});
+				
+				
 				jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
-				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap] });
+				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });
 	
 				jsGFwk.Scenes.scenes.hud.enable();
 				jsGFwk._gameObjects.progress.destroy();
