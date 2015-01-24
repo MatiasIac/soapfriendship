@@ -15,6 +15,7 @@ window.onload = function init() {
 	jsGFwk.include("Fonts");
 	jsGFwk.include("Scenes");
 	jsGFwk.include("Path");
+	jsGFwk.include("Effects");
 
 	jsGFwk.Fonts.createFont({ name: 'zxBold', source: 'fonts/zxBold.ttf' });
 	
@@ -25,6 +26,11 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "mano", source: "images/mano.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "button", source: "images/button.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "prisoner", source: "images/prisoner.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "light", source: "images/light.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "cloud", source: "images/cloud.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "animBackground", source: "images/animbackground.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "animSoap", source: "images/animSoap.png" });
+
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
@@ -70,6 +76,7 @@ window.onload = function init() {
 				});
 								
 				jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
+				jsGFwk.Scenes.create({name: "introAnim", gameObjects: [introAnim] });
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
