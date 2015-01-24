@@ -28,7 +28,7 @@ var jsGFwk = (function(){
 		*/
 		createObject: function(object) {
 			if (object.id === undefined) {
-				return;
+				throw new Error("Game objects need an id");
 			}
 			
 			/** @subtitle: [object].destroy
