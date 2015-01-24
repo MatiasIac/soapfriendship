@@ -15,5 +15,5 @@ exports.check = function(req, res) {
 		count += 1;
 	}
 	//TODO check room update
-	res.send("respond with a resource");
+	res.render('game', { title: 'Express' });
 };
