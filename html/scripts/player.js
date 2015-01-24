@@ -6,12 +6,14 @@ var player = {
   soapTemptationMeter: 0,
   actionKey: -1,
   wasActionKeyPressed: false,
-  temptationApproachTimer: {
-    
-  },
+  temptationApproachTimer: { },
+  x: 0,
+  y: 0,
   onInit: function (settings) {
     var self = this;
     self.actionKey = settings.actionKey;
+	self.x = settings.x;
+	self.y = settings.y;
     
     this.temptationApproachTimer = new jsGFwk.Timer({
         action: function () {
@@ -34,7 +36,8 @@ var player = {
   onDraw: function (ctx) {
     ctx.save();
     ctx.fillStyle = "black";
-    ctx.fillText(this.soapTemptationMeter, 10, 10);
+	ctx.font = "24pt zxBold";
+    ctx.fillText(this.soapTemptationMeter, this.x, this.y);
     ctx.restore();
   }
 };
