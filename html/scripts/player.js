@@ -1,4 +1,4 @@
-/* global jsGFwk, util, console*/
+/* global jsGFwk, util, console, Button*/
 
 
 var player = {
@@ -12,8 +12,7 @@ var player = {
 	y: 0,
 	currentImage: null, 
 	currentImageCollection: null,
-
-		
+	button: null,
 	onInit: function (settings) {
 		var self = this;
 		self.actionKey = settings.actionKey;
@@ -22,6 +21,10 @@ var player = {
 		self.currentImage = settings.imageCollection.spriteBag[0];
 		self.spriteBag = settings.imageCollection.spriteBag;
 		self.currentImageCollection = settings.imageCollection;
+		var bs = settings.buttonSettings;
+		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id);
+		
+		
 		console.log(self.currentImageCollection.spriteBag);
 		
 		this.temptationApproachTimer = new jsGFwk.Timer({
@@ -33,24 +36,32 @@ var player = {
 	},
 	
 	onUpdate: function (delta) {
-		if (!this.wasActionKeyPressed && jsGFwk.IO.keyboard._activeKey[this.actionKey]) {
+		var actionKeyPressed = jsGFwk.IO.keyboard._activeKey[this.actionKey];
+		if (!this.wasActionKeyPressed && actionKeyPressed) {
 			this.soapTemptationMeter = util.wrap(this.soapTemptationMeter + 1, 0, 99);
 			this.wasActionKeyPressed = true;
 		}
-		if (!jsGFwk.IO.keyboard._activeKey[this.actionKey]) {
+		if (!actionKeyPressed) {
 			this.wasActionKeyPressed = false; 
 		}
 		this.temptationApproachTimer.tick(1);
+		if (this.button) {
+			this.button.toggled = actionKeyPressed;	
+		}
+		if (this.button) {
+			this.button.onUpdate(delta);
+		}
 	},
 	onDraw: function (ctx) {
-		console.log('Spritebag: ' + this.spriteBag);
 		var currentImage = this.spriteBag[parseInt(this.soapTemptationMeter / 100 * this.spriteBag.length)];
-		console.log(currentImage);
 		ctx.save();
 		ctx.fillStyle = "black";
 		ctx.font = "24pt zxBold";
 		ctx.fillText(this.soapTemptationMeter, this.x, this.y);
 		ctx.drawImage(currentImage.image, this.x, this.y);
 		ctx.restore();
+		if (this.button) {
+			this.button.onDraw(ctx);
+		}
 	}
 };

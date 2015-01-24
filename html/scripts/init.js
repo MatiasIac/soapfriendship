@@ -22,7 +22,7 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "placeholder", source: "images/rockman-placeholder.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "mano", source: "images/mano.png" });
-
+	jsGFwk.ResourceManager.addGraphic({	name: "button", source: "images/button.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
@@ -42,6 +42,10 @@ window.onload = function init() {
 					 {left: 67, top: 3, width: 36, height: 91, inverted: true},
 					 {left: 156, top: 3, width: 50, height: 93, inverted: true},
 					 {left: 212, top: 8, width: 57, height: 90, inverted: true}]);
+				jsGFwk.Sprites.createSpriteCollection("button", 
+					jsGFwk.ResourceManager.graphics.button.image, 
+						[{left: 0, top: 0, width: 50, height: 50},
+						 {left: 50, top: 0, width: 50, height: 50}]);
 				
 				jsGFwk.Sprites.createSprite({
 					id: "hudSoap",
