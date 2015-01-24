@@ -1,4 +1,4 @@
-/*global window, document, jsGFwk*/
+/*global window, document, player, jsGFwk*/
 window.onload = function init() {
   jsGFwk.settings.canvas = "canvas";
   jsGFwk.settings.clearColor = "rgb(50, 50, 50)";
@@ -18,14 +18,14 @@ window.onload = function init() {
     name: 'zxBold',
     source: 'fonts/zxBold.ttf'
   });
-
+/*
   jsGFwk.createObject({
     id: "progress",
     visible: true,
     barWidth: 0,
     init: function () {
       jsGFwk.ResourceManager.onResourcesLoadedCompleted = function () {
-
+        
         //jsGFwk._gameObjects.progress.destroy();
       };
     },
@@ -37,6 +37,8 @@ window.onload = function init() {
       context.restore();
     }
   });
+*/
+  jsGFwk.Container.createContainer("players", player);
 
   jsGFwk.start();
 };
