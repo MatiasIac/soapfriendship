@@ -38,11 +38,10 @@ window.onload = function init() {
 		init: function () {
 			jsGFwk.ResourceManager.onResourcesLoadedCompleted = function () {
 				
-				
 				jsGFwk.Sprites.createSpriteCollection("button", 
 					jsGFwk.ResourceManager.graphics.button.image, 
-						[{left: 0, top: 0, width: 50, height: 50},
-						 {left: 50, top: 0, width: 50, height: 50}]);
+						[{left: 64, top: 6, width: 60, height: 49},
+						{left: 1, top: 6, width: 60, height: 49}]);
 				var playerSpritesAtlas = util.makeAtlas(127, 261, 8, false);
 				jsGFwk.Sprites.createSpriteCollection("player", 
 					jsGFwk.ResourceManager.graphics.prisoner.image,
@@ -80,8 +79,8 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
-				//jsGFwk.Scenes.scenes.hud.enable();
-				jsGFwk.Scenes.scenes.game.enable();
+				jsGFwk.Scenes.scenes.hud.enable();
+				//jsGFwk.Scenes.scenes.game.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
 		},
