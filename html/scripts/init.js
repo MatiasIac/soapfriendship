@@ -21,6 +21,7 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "hubBackground", source: "images/hudBackground.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "placeholder", source: "images/rockman-placeholder.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "mano", source: "images/mano.png" });
 
 	jsGFwk.createObject({
 		id: "progress",
