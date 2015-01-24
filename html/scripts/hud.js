@@ -4,8 +4,8 @@ var hud = {
 	fakeMouse: { x: 0, y: 0, width: 1, height: 1 },
 	soapApproachTimer: {}, soapX: 0, soapY: 500, segment: 0,
 	flashTimer: {}, transparent: 1,
-	visible: true,
-	showMano: false,
+	visible: true, tapBlink: false, tiltTimer: {},
+	showMano: false, handAngle: 0, handAngleCounter: 0.1,
 	init: function () {
 		var self = this;
 		jsGFwk.Collisions.onObjectCreated(this.fakeMouse);
@@ -70,6 +70,23 @@ var hud = {
 			tickTime: 0.2
 		});
 		
+		this.tapBlinkTimer = new jsGFwk.Timer({
+			action: function () {
+				self.tapBlink = !self.tapBlink;
+			}, 
+			tickTime: 0.5
+		});
+		
+		this.tiltTimer = new jsGFwk.Timer({
+			action: function () {
+				self.handAngle += self.handAngleCounter;
+				if (self.handAngle > 10 || self.handAngle < -10) {
+					self.handAngleCounter *= -1;
+				}
+			},
+			tickTime: 0.05
+		});
+		
 		this.path.setPath({x: 118, y: 500}, {x: 118, y: 100},
 			{x: 320, y: 400}, {x: 800, y: -100});
 			
@@ -79,6 +96,8 @@ var hud = {
 	
 	_updatePointer: function () {},
 	_updateNormal: function (delta) {
+		this.tapBlinkTimer.tick(delta);
+		this.tiltTimer.tick(delta);
 		if (this.segment < 1) {
 			this.soapApproachTimer.tick(delta);
 		} else/* if (!this.showMano) */{
@@ -119,9 +138,30 @@ var hud = {
 			this.particles1.renderParticles(context);
 			
 			if (this.showMano) {
-				context.drawImage(jsGFwk.ResourceManager.graphics.mano.image, 108, 72);
+				context.drawImage(jsGFwk.ResourceManager.graphics.cloud.image, 170, 390);
+				context.drawImage(jsGFwk.ResourceManager.graphics.light.image, 108, 0);
+				context.drawImage(jsGFwk.ResourceManager.graphics.cloud.image, 391, 390);
+				
+				context.save();
+					context.translate(300, 550);
+					context.rotate(jsGFwk.Effects.degreeToRadians(this.handAngle));
+					context.translate(-200, -500);
+					context.drawImage(jsGFwk.ResourceManager.graphics.mano.image, 0, 0);
+				context.restore();
+				
+				context.drawImage(jsGFwk.ResourceManager.graphics.cloud.image, -50, 390);
+				
 				context.drawImage(jsGFwk.Sprites.hudSoapText.image, 100, 50);
 				context.drawImage(jsGFwk.Sprites.hudSoapText2.image, 50, 80);
+				
+				if (this.tapBlink) {
+					context.font = "44pt zxBold";
+					context.textAlign = "center";
+					context.fillStyle = "white";
+					context.fillText("Tap to play", 321, 421);
+					context.fillStyle = "black";
+					context.fillText("Tap to play", 320, 420);
+				}
 				
 				context.fillStyle = "rgba(255,255,255," + this.transparent + ")";
 				context.fillRect(0,0,640,480);

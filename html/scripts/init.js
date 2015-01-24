@@ -13,6 +13,7 @@ window.onload = function init() {
 	jsGFwk.include("Fonts");
 	jsGFwk.include("Scenes");
 	jsGFwk.include("Path");
+	jsGFwk.include("Effects");
 
 	jsGFwk.Fonts.createFont({ name: 'zxBold', source: 'fonts/zxBold.ttf' });
 	
@@ -23,6 +24,8 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "mano", source: "images/mano.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "button", source: "images/button.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "light", source: "images/light.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "cloud", source: "images/cloud.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
