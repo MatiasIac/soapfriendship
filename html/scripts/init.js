@@ -28,13 +28,20 @@ window.onload = function init() {
 		barWidth: 0,
 		init: function () {
 			jsGFwk.ResourceManager.onResourcesLoadedCompleted = function () {
+				
 				jsGFwk.Sprites.createSpriteCollection("dummy", 
 					jsGFwk.ResourceManager.graphics.placeholder.image, 
 					[{left: 5, top: 3, width: 57, height: 86},
 					 {left: 67, top: 3, width: 36, height: 91},
 					 {left: 156, top: 3, width: 50, height: 93},
 					 {left: 212, top: 8, width: 57, height: 90}]);
-					 
+				jsGFwk.Sprites.createSpriteCollection("mirroredPlayer", 
+					jsGFwk.ResourceManager.graphics.placeholder.image, 
+					[{left: 5, top: 3, width: 57, height: 86, inverted: true},
+					 {left: 67, top: 3, width: 36, height: 91, inverted: true},
+					 {left: 156, top: 3, width: 50, height: 93, inverted: true},
+					 {left: 212, top: 8, width: 57, height: 90, inverted: true}]);
+				
 				jsGFwk.Sprites.createSprite({
 					id: "hudSoap",
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
