@@ -11,8 +11,7 @@ var player = {
   y: 0,
   currentImage: null, 
   currentImageCollection: null,
-  xBlur: 0,
-  
+    
   onInit: function (settings) {
     var self = this;
     self.actionKey = settings.actionKey;
@@ -24,7 +23,6 @@ var player = {
     this.temptationApproachTimer = new jsGFwk.Timer({
         action: function () {
            self.soapTemptationMeter -= 5;
-		   self.xBlur++;
         }, 
         tickTime: 10
     });
@@ -45,10 +43,7 @@ var player = {
 		ctx.fillStyle = "black";
 		ctx.font = "24pt zxBold";
 		ctx.fillText(this.soapTemptationMeter, this.x, this.y);
-	
 		ctx.drawImage(this.currentImage.image, this.x, this.y);
-		ctx.drawImage(jsGFwk.ResourceManager.graphics.blur.image,
-			this.x + this.xBlur, this.y + 20);
     ctx.restore();
   }
 };

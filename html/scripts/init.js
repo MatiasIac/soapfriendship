@@ -17,9 +17,9 @@ window.onload = function init() {
 	jsGFwk.Fonts.createFont({ name: 'zxBold', source: 'fonts/zxBold.ttf' });
 	
 	jsGFwk.ResourceManager.addGraphic({	name: "loadingSoap", source: "images/loadingSoap.png" });
-	jsGFwk.ResourceManager.addGraphic({	name: "splash", source: "images/splash.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "hubSprite", source: "images/hudMainSprites.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "hubBackground", source: "images/hudBackground.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "placeholder", source: "images/rockman-placeholder.png" });
-	jsGFwk.ResourceManager.addGraphic({	name: "blur", source: "images/blurTest.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
 
 	jsGFwk.createObject({
@@ -34,11 +34,31 @@ window.onload = function init() {
 					 {left: 67, top: 3, width: 36, height: 91},
 					 {left: 156, top: 3, width: 50, height: 93},
 					 {left: 212, top: 8, width: 57, height: 90}]);
+					 
+				jsGFwk.Sprites.createSprite({
+					id: "hudSoap",
+					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
+					left: 0, top: 0, width: 405, height: 259 });
+					
+				jsGFwk.Sprites.createSprite({
+					id: "hudSoapText",
+					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
+					left: 199, top: 265, width: 196, height: 79 });
+
+				jsGFwk.Sprites.createSprite({
+					id: "hudSoapText2",
+					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
+					left: 7, top: 348, width: 463, height: 125 });
+					
+				jsGFwk.Sprites.createSprite({
+					id: "hudBar",
+					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
+					left: 10, top: 477, width: 284, height: 158 });
 		  
 				players = jsGFwk.Container.createContainer("players", player);
 
 				jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
-				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players] });
+				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap] });
 	
 				jsGFwk.Scenes.scenes.hud.enable();
 				jsGFwk._gameObjects.progress.destroy();
