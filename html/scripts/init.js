@@ -48,8 +48,8 @@ window.onload = function init() {
 			context.save();
 				context.fillStyle = "black";
 				context.fillText("Rubbing..." + parseInt((jsGFwk.ResourceManager._totalLoadedResources * 100) / jsGFwk.ResourceManager._totalResources) + "%", 30, 40);
-				context.drawImage(jsGFwk.ResourceManager.graphics.loadingSoap.image,
-					300, 200);
+				/*context.drawImage(jsGFwk.ResourceManager.graphics.loadingSoap.image,
+					300, 200);*/
 			context.restore();
 		}
 	});
