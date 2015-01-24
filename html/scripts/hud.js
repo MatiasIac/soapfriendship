@@ -3,8 +3,9 @@ var hud = {
 	mouseClickId: 0,
 	fakeMouse: { x: 0, y: 0, width: 1, height: 1 },
 	soapApproachTimer: {}, soapX: 0, soapY: 500, segment: 0,
+	flashTimer: {},
 	visible: true,
-	//showMano: false,
+	showMano: false,
 	init: function () {
 		var self = this;
 		jsGFwk.Collisions.onObjectCreated(this.fakeMouse);
@@ -55,29 +56,68 @@ var hud = {
 			tickTime: 0.0001
 		});
 		
+		this.flashTimer = new jsGFwk.Timer({
+			action: function () {
+				self.showMano = true;
+				self._drawPointer = self._drawNormalPointer;
+				self._updatePointer = self._updateNormal;
+			}, 
+			tickTime: 0.2
+		});
+		
 		this.path.setPath({x: 118, y: 500}, {x: 118, y: 100},
 			{x: 320, y: 400}, {x: 800, y: -100});
+			
+		this._drawPointer = this._drawNormalPointer;
+		this._updatePointer = this._updateNormal;
 	},
+	
+	_updatePointer: function () {},
+	_updateNormal: function (delta) {
+		if (this.segment < 1) {
+			this.soapApproachTimer.tick(delta);
+		} else if (!this.showMano) {
+			this._drawPointer = this._drawFlashPointer;
+			this._updatePointer = this._updateFlash;
+		}
+	},
+	_updateFlash: function (delta) {
+		this.flashTimer.tick(delta);
+	},
+	
 	update: function (delta) {
 		this.particles1.update(delta);
 		this.particles2.update(delta);
 		
-		if (this.segment < 1) {
-			this.soapApproachTimer.tick(delta);
-		}
+		this._updatePointer(delta);
 	},
 	draw: function (context) {
+		this._drawPointer(context);
+	},
+	
+	_drawPointer: function () {	},
+	
+	_drawFlashPointer: function (context) {
+		context.save();
+			context.fillStyle = "white";
+			context.fillRect(0,0,640,480);
+		context.restore();
+	},
+	
+	_drawNormalPointer: function (context) {
 		context.save();
 			context.drawImage(jsGFwk.ResourceManager.graphics.hubBackground.image, 0, 0);
-			context.drawImage(jsGFwk.Sprites.hudBar.image, 200, 322);
 			this.particles1.renderParticles(context);
-			//if (this.showMano) {
-			//	context.drawImage(jsGFwk.ResourceManager.graphics.mano.image, 118, this.soapY);
-			//} else {
+			
+			if (this.showMano) {
+				//context.drawImage(jsGFwk.Sprites.hudBar.image, 200, 322);
+				context.drawImage(jsGFwk.ResourceManager.graphics.mano.image, 108, 72);
+				context.drawImage(jsGFwk.Sprites.hudSoapText.image, 100, 50);
+				context.drawImage(jsGFwk.Sprites.hudSoapText2.image, 50, 80);
+			} else {
 				context.drawImage(jsGFwk.Sprites.hudSoap.image, 118, this.soapY);
-			//}
-			context.drawImage(jsGFwk.Sprites.hudSoapText.image, 100, 50);
-			context.drawImage(jsGFwk.Sprites.hudSoapText2.image, 50, 80);
+			}
+			
 			this.particles2.renderParticles(context);
 		context.restore();
 	}
