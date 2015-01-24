@@ -59,6 +59,7 @@ jsGFwk.Container = (function() {
 			
 			if (cloned.onInit != undefined) { cloned.onInit(initParameters); }
 			_allObjects[_objectCounter] = cloned;
+            return cloned;
 		};
 	}
 	
@@ -68,7 +69,7 @@ jsGFwk.Container = (function() {
 	_createContainer = function (containerName, settings) {
 		var newContainer = new container(settings);
 		newContainer.id = containerName;
-		jsGFwk.createObject(newContainer);
+        return newContainer;
 	};
 
 	_onStart = function () { };
