@@ -20,6 +20,7 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "splash", source: "images/splash.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "placeholder", source: "images/rockman-placeholder.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "blur", source: "images/blurTest.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
 
 	jsGFwk.createObject({
 		id: "progress",

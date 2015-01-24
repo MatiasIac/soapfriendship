@@ -14,26 +14,43 @@ var hud = {
 			jsGFwk.Scenes.scenes.game.enable();
 		});
 		
-		this.particles = new cParticleEmitter();
-		this.particles.init();
-		this.particles.position.y = 430;
-		this.particles.position.x = 10;
-		this.particles.positionRandom.x = 0;
-		this.particles.maxParticles = 10;
-		this.particles.size = 150;
-		this.particles.sizeRandom = 5;
-		this.particles.angle = 0;
-		this.particles.gravity.x = 0;
-		this.particles.lifeSpan = 2;
-		this.particles.speed = 0;
+		this.particles1 = new cParticleEmitter();
+		this.particles1.init({ image: jsGFwk.ResourceManager.graphics.bubble.image});
+		this.particles1.position.y = 450;
+		this.particles1.position.x = 100;
+		this.particles1.positionRandom.x = 100;
+		this.particles1.positionRandom.y = 100;
+		this.particles1.maxParticles = 100;
+		this.particles1.size = 80;
+		this.particles1.sizeRandom = 5;
+		this.particles1.angle = 0;
+		this.particles1.gravity.x = 0;
+		this.particles1.lifeSpan = 4;
+		//this.particles.speed = 0;
+		
+		this.particles2 = new cParticleEmitter();
+		this.particles2.init({ image: jsGFwk.ResourceManager.graphics.bubble.image});
+		this.particles2.position.y = -30;
+		this.particles2.position.x = 400;
+		this.particles2.positionRandom.x = 100;
+		this.particles2.positionRandom.y = 100;
+		this.particles2.maxParticles = 100;
+		this.particles2.size = 80;
+		this.particles2.sizeRandom = 5;
+		this.particles2.angle = 0;
+		this.particles2.gravity.x = -0.01;
+		this.particles2.gravity.y = 0.1;
+		this.particles2.lifeSpan = 4;
 	},
 	update: function (delta) {
-		this.particles.update(delta);
+		this.particles1.update(delta);
+		this.particles2.update(delta);
 	},
 	draw: function (context) {
 		context.save();
 			context.drawImage(jsGFwk.ResourceManager.graphics.splash.image, 0, 60);
-			this.particles.renderParticles(context);
+			this.particles1.renderParticles(context);
+			this.particles2.renderParticles(context);
 		context.restore();
 	}
 };

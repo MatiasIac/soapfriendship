@@ -55,6 +55,8 @@ function cParticleEmitter(){
 		this.emitCounter = 0;
 		
 		if (useImage) {
+			this.image = useImage.image;
+			this._render = this._renderImage;
 		} else {
 			this._render = this._renderGradiant;
 		}
@@ -187,6 +189,10 @@ function cParticleEmitter(){
 	};
 	
 	this._render = function () {};
+	
+	this._renderImage = function (particle, size, halfSize, x, y, context) {
+		context.drawImage(this.image, x, y, size, size);
+	};
 	
 	this._renderGradiant = function (particle, size, halfSize, x, y, context) {
 		var radgrad = context.createRadialGradient(x + halfSize, y + halfSize, particle.sizeSmall, x + halfSize, y + halfSize, halfSize);  
