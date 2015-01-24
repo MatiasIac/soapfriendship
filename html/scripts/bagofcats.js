@@ -4,3 +4,5 @@ var keyMap = {
   "J": 74,
   "L": 76
 };
+
+var players = {};
