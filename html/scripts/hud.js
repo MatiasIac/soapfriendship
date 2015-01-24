@@ -19,7 +19,7 @@ var hud = {
 			self.fakeMouse.x = coord.x;
 			self.fakeMouse.y = coord.y;
 			jsGFwk.IO.mouse.unregisterClick(self.mouseClickId);
-			jsGFwk.Scenes.scenes.game.enable();
+			jsGFwk.Scenes.scenes.introAnim.enable();
 		});
 		
 		this.particles1 = new cParticleEmitter();
