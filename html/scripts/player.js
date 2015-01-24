@@ -23,7 +23,7 @@ var player = {
 		self.currentImageCollection = settings.imageCollection;
 		var bs = settings.buttonSettings;
 		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id);
-		
+		self.enabled = false;
 		
 		console.log(self.currentImageCollection.spriteBag);
 		
@@ -34,23 +34,32 @@ var player = {
 			tickTime: 5
 		});
 	},
-	
+	updateStates: {
+		enabled: function enabled(delta) {
+			var actionKeyPressed = jsGFwk.IO.keyboard._activeKey[this.actionKey];
+			if (!this.wasActionKeyPressed && actionKeyPressed) {
+				this.soapTemptationMeter = util.wrap(this.soapTemptationMeter + 1, 0, 99);
+				this.wasActionKeyPressed = true;
+			}
+			if (!actionKeyPressed) {
+				this.wasActionKeyPressed = false; 
+			}
+			this.temptationApproachTimer.tick(1);
+			if (this.button) {
+				this.button.toggled = actionKeyPressed;	
+			}
+			if (this.button) {
+				this.button.onUpdate(delta);
+			}	
+		},
+		
+		idle: function() {
+		
+		}
+	},
 	onUpdate: function (delta) {
-		var actionKeyPressed = jsGFwk.IO.keyboard._activeKey[this.actionKey];
-		if (!this.wasActionKeyPressed && actionKeyPressed) {
-			this.soapTemptationMeter = util.wrap(this.soapTemptationMeter + 1, 0, 99);
-			this.wasActionKeyPressed = true;
-		}
-		if (!actionKeyPressed) {
-			this.wasActionKeyPressed = false; 
-		}
-		this.temptationApproachTimer.tick(1);
-		if (this.button) {
-			this.button.toggled = actionKeyPressed;	
-		}
-		if (this.button) {
-			this.button.onUpdate(delta);
-		}
+		var state = this.enabled ? "enabled" : "idle";
+		this.updateStates[state].call(this, delta);
 	},
 	onDraw: function (ctx) {
 		var currentImage = this.spriteBag[parseInt(this.soapTemptationMeter / 100 * this.spriteBag.length)];
