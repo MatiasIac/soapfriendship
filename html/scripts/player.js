@@ -22,7 +22,7 @@ var player = {
 		self.spriteBag = settings.imageCollection.spriteBag;
 		self.currentImageCollection = settings.imageCollection;
 		var bs = settings.buttonSettings;
-		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id);
+		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name);
 		self.enabled = false;
 		self.name = settings.name;
 		console.log(self.currentImageCollection.spriteBag);
@@ -32,14 +32,14 @@ var player = {
 	 			self.soapTemptationMeter = util.wrap(self.soapTemptationMeter - 1, 0, 99);
 			},
 			//Player ducking speed. Recommended: 5
-			tickTime: 7
+			tickTime: 2
 		});
 	},
 	updateStates: {
 		enabled: function enabled(delta) {
 			var actionKeyPressed = jsGFwk.IO.keyboard._activeKey[this.actionKey];
 			if (!this.wasActionKeyPressed && actionKeyPressed) {
-				this.soapTemptationMeter = util.wrap(this.soapTemptationMeter + 1, 0, 99);
+				this.soapTemptationMeter = util.wrap(this.soapTemptationMeter + 5, 0, 99);
 				this.wasActionKeyPressed = true;
 			}
 			if (!actionKeyPressed) {
