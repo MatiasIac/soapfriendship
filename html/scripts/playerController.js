@@ -5,6 +5,7 @@ var playerController = {
 	init: function () {
 		players.clearAll();
 		players.cloneObject({ actionKey: keyMap.A,
+			name: "Player 1",
 			x: 50, y: 100,
 			imageCollection: jsGFwk.Sprites.dummy,
 			buttonSettings:  {
@@ -14,7 +15,8 @@ var playerController = {
 			}
 		});
 		players.cloneObject({ actionKey: keyMap.F,
-			x: 200, y: 80,
+			name: "Player 2",
+		 	x: 200, y: 80,
 			imageCollection: jsGFwk.Sprites.dummy,
 			buttonSettings:  {
 				x: 200,
@@ -23,7 +25,8 @@ var playerController = {
 			}
 		});
 		players.cloneObject({ actionKey: keyMap.J,
-			x: 350, y: 80,
+			name: "Player 3",
+		 	x: 350, y: 80,
 			imageCollection: jsGFwk.Sprites.mirroredPlayer,
 			buttonSettings:  {
 				x: 350,
@@ -32,7 +35,8 @@ var playerController = {
 			}
 		});
 		players.cloneObject({ actionKey: keyMap.L,
-			x: 500, y: 100,
+			name: "Player 4",
+		 	x: 500, y: 100,
 			imageCollection: jsGFwk.Sprites.mirroredPlayer,
 			buttonSettings:  {
 				x: 500,

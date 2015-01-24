@@ -24,14 +24,14 @@ var player = {
 		var bs = settings.buttonSettings;
 		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id);
 		self.enabled = false;
-		
+		self.name = settings.name;
 		console.log(self.currentImageCollection.spriteBag);
 		
 		this.temptationApproachTimer = new jsGFwk.Timer({
 			action: function () {
 	 			self.soapTemptationMeter = util.wrap(self.soapTemptationMeter - 1, 0, 99);
 			}, 
-			tickTime: 5
+			tickTime: 1
 		});
 	},
 	updateStates: {
@@ -50,7 +50,14 @@ var player = {
 			}
 			if (this.button) {
 				this.button.onUpdate(delta);
-			}	
+			}
+			
+			if (this.soapTemptationMeter <= 0) {
+				gameOverScreen.winner = this;
+				jsGFwk.Scenes.scenes.gameOver.enable();
+				players.clearAll();
+			}
+			
 		},
 		
 		idle: function() {

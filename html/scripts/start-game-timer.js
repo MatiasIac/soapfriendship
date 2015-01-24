@@ -32,3 +32,7 @@ StartGameTimer.prototype.draw = function(ctx) {
 	ctx.fillText(this.stage, 320, 240);
 	ctx.restore();
 };
+
+StartGameTimer.prototype.destroy = function() {
+
+}

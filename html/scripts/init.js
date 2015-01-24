@@ -1,4 +1,6 @@
-/*global window, document, player, jsGFwk, keyMap*/
+/*global window, document, player, jsGFwk, keyMap, StartGameTimer, hud, background, soap, gameOverScreen, playerController */
+var players;
+
 window.onload = function init() {
 	jsGFwk.settings.canvas = "canvas";
 	jsGFwk.settings.clearColor = "lightpink";
@@ -69,16 +71,16 @@ window.onload = function init() {
 		  
 				players = jsGFwk.Container.createContainer("players", player);
 				
-				var timer = new StartGameTimer(5, 40, function startCallback() {
+				var timer = new StartGameTimer(5, 5, function startCallback() {
 					players.eachCloned(function(clone) {
 						clone.enabled = true;
 					});
 				});
-				
-				
+								
 				jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
-				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });
-	
+				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
+				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
+				
 				jsGFwk.Scenes.scenes.hud.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
