@@ -22,7 +22,7 @@ var player = {
 		self.spriteBag = settings.imageCollection.spriteBag;
 		self.currentImageCollection = settings.imageCollection;
 		var bs = settings.buttonSettings;
-		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name);
+		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name	);
 		self.enabled = false;
 		self.name = settings.name;
 		console.log(self.currentImageCollection.spriteBag);

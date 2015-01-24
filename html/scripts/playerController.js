@@ -7,7 +7,7 @@ var playerController = {
 		players.cloneObject({ actionKey: keyMap.A,
 			name: "Player 1",
 			x: 50, y: 100,
-			imageCollection: jsGFwk.Sprites.player,
+			imageCollection: jsGFwk.Sprites.prisoner1,
 			buttonSettings:  {
 				x: 50,
 				y: 200,
@@ -18,7 +18,7 @@ var playerController = {
 		players.cloneObject({ actionKey: keyMap.F,
 			name: "Player 2",
 		 	x: 200, y: 80,
-			imageCollection: jsGFwk.Sprites.player,
+			imageCollection: jsGFwk.Sprites.prisoner2,
 			buttonSettings:  {
 				x: 200,
 				y: 200,
@@ -29,7 +29,7 @@ var playerController = {
 		players.cloneObject({ actionKey: keyMap.NUM4,
 			name: "Player 3",
 		 	x: 350, y: 80,
-			imageCollection: jsGFwk.Sprites.player,
+			imageCollection: jsGFwk.Sprites.prisoner3,
 			buttonSettings:  {
 				x: 350,
 				y: 200,
@@ -40,7 +40,7 @@ var playerController = {
 		players.cloneObject({ actionKey: keyMap.NUM6,
 			name: "Player 4",
 		 	x: 500, y: 100,
-			imageCollection: jsGFwk.Sprites.player,
+			imageCollection: jsGFwk.Sprites.prisoner4,
 			buttonSettings:  {
 				x: 500,
 				y: 200,

@@ -10,7 +10,7 @@ var util = (function() {
 		var spriteCollection = [];
 		var newFrame;
 		for (var i = 0; i < frames; i++) {
-			newFrame = {left: width * i, top: 0, width: width, height: height};
+			newFrame = {left: width * i, top: 0, width: width, height: height, inverted: inverted};
 			spriteCollection.push(newFrame);
 		}
 		return spriteCollection;
