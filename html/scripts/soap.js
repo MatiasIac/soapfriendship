@@ -1,7 +1,7 @@
 var soap = {
 	id: "soap",
 	visible: true,
-	x: 11, y: 400,
+	x: 11, y: 360,
 	sizePorcentege: 0.5,
 	soapSpeed: 1, soapDirection: 1,
 	soapTimer: {},
