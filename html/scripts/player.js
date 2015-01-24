@@ -30,8 +30,9 @@ var player = {
 		this.temptationApproachTimer = new jsGFwk.Timer({
 			action: function () {
 	 			self.soapTemptationMeter = util.wrap(self.soapTemptationMeter - 1, 0, 99);
-			}, 
-			tickTime: 1
+			},
+			//Player ducking speed. Recommended: 5
+			tickTime: 7
 		});
 	},
 	updateStates: {
@@ -69,7 +70,7 @@ var player = {
 		this.updateStates[state].call(this, delta);
 	},
 	onDraw: function (ctx) {
-		var currentImage = this.spriteBag[parseInt(this.soapTemptationMeter / 100 * this.spriteBag.length)];
+		var currentImage = this.spriteBag[parseInt((99 - this.soapTemptationMeter) / 100 * this.spriteBag.length)];
 		ctx.save();
 		ctx.fillStyle = "black";
 		ctx.font = "24pt zxBold";

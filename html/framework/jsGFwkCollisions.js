@@ -37,6 +37,19 @@ jsGFwk.Collisions = {
 
         return true;
 	},
+	_isPointInside: function(x, y) {
+		var thisX = this.x - this.rotationPoint.x;
+		var thisY = this.y - this.rotationPoint.y;
+		if (thisX + this.width < otherX)
+            return false;
+        if (thisY + this.height < otherY)
+            return false;
+        if (thisX > otherX)
+            return false;
+        if (thisY > otherY)
+            return false;
+        return true;
+	},
 
 	/** @title: Setup for Radial collision
 	 * @description: You need the following public properties in your game object to activate the box collisions.
@@ -68,6 +81,7 @@ jsGFwk.Collisions = {
 		if (!newObject.center) { newObject.center = { x: 0, y: 0 }; }
 		newObject.isRectColliding = this._rectColliding;
 		newObject.isRadColliding = this._disColliding;
+		newObject.isPointInside = this._isPointInside;
 	},
 	onLoadReady: function () {
 		jsGFwk.include(this._plugInName);

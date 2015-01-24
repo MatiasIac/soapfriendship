@@ -1,4 +1,4 @@
-/*global window, document, player, jsGFwk, keyMap, StartGameTimer, hud, background, soap, gameOverScreen, playerController */
+/*global window, document, player, jsGFwk, keyMap, StartGameTimer, hud, background, soap, gameOverScreen, playerController, util */
 var players;
 
 window.onload = function init() {
@@ -21,10 +21,10 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "loadingSoap", source: "images/loadingSoap.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubSprite", source: "images/hudMainSprites.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubBackground", source: "images/hudBackground.png" });
-	jsGFwk.ResourceManager.addGraphic({	name: "placeholder", source: "images/rockman-placeholder.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "mano", source: "images/mano.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "button", source: "images/button.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "prisoner", source: "images/prisoner.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
@@ -32,23 +32,15 @@ window.onload = function init() {
 		init: function () {
 			jsGFwk.ResourceManager.onResourcesLoadedCompleted = function () {
 				
-				jsGFwk.Sprites.createSpriteCollection("dummy", 
-					jsGFwk.ResourceManager.graphics.placeholder.image, 
-					[{left: 5, top: 3, width: 57, height: 86},
-					 {left: 67, top: 3, width: 36, height: 91},
-					 {left: 156, top: 3, width: 50, height: 93},
-					 {left: 212, top: 8, width: 57, height: 90}]);
-				jsGFwk.Sprites.createSpriteCollection("mirroredPlayer", 
-					jsGFwk.ResourceManager.graphics.placeholder.image, 
-					[{left: 5, top: 3, width: 57, height: 86, inverted: true},
-					 {left: 67, top: 3, width: 36, height: 91, inverted: true},
-					 {left: 156, top: 3, width: 50, height: 93, inverted: true},
-					 {left: 212, top: 8, width: 57, height: 90, inverted: true}]);
+				
 				jsGFwk.Sprites.createSpriteCollection("button", 
 					jsGFwk.ResourceManager.graphics.button.image, 
 						[{left: 0, top: 0, width: 50, height: 50},
 						 {left: 50, top: 0, width: 50, height: 50}]);
-				
+				var playerSpritesAtlas = util.makeAtlas(127, 261, 8, false);
+				jsGFwk.Sprites.createSpriteCollection("player", 
+					jsGFwk.ResourceManager.graphics.prisoner.image,
+					playerSpritesAtlas);			
 				jsGFwk.Sprites.createSprite({
 					id: "hudSoap",
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
