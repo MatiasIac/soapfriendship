@@ -3,17 +3,22 @@
 var player = {
   id: "player",
   visible: true,
-  soapTemptationMeter: 0,
+  soapTemptationMeter: 100,
   actionKey: -1,
   wasActionKeyPressed: false,
   temptationApproachTimer: { },
   x: 0,
   y: 0,
+  currentImage: null, 
+  currentImageCollection: null,
+  
   onInit: function (settings) {
     var self = this;
     self.actionKey = settings.actionKey;
 	self.x = settings.x;
 	self.y = settings.y;
+	self.currentImage = settings.imageCollection[0];
+	self.currentImageCollection = settings.imageCollection;
     
     this.temptationApproachTimer = new jsGFwk.Timer({
         action: function () {
@@ -35,9 +40,11 @@ var player = {
   },
   onDraw: function (ctx) {
     ctx.save();
-    ctx.fillStyle = "black";
-	ctx.font = "24pt zxBold";
-    ctx.fillText(this.soapTemptationMeter, this.x, this.y);
+		ctx.fillStyle = "black";
+		ctx.font = "24pt zxBold";
+		ctx.fillText(this.soapTemptationMeter, this.x, this.y);
+	
+		ctx.drawImage(this.currentImage, this.x, this.y);
     ctx.restore();
   }
 };

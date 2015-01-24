@@ -17,7 +17,7 @@ var hud = {
 	update: function () {},
 	draw: function (context) {
 		context.save();
-			
+			context.drawImage(jsGFwk.ResourceManager.graphics.splash.image, 0, 60);
 		context.restore();
 	}
 };
