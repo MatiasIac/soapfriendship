@@ -13,7 +13,8 @@ var playerController = {
 				y: 200,
 				id: "key1",
 				name: "A"
-			}
+			},
+			head: jsGFwk.Sprites.head1
 		});
 		players.cloneObject({ actionKey: keyMap.F,
 			name: "Player 2",
@@ -24,7 +25,8 @@ var playerController = {
 				y: 200,
 				id: "key2",
 				name: "F"
-			}
+			},
+		 	head: jsGFwk.Sprites.head1
 		});
 		players.cloneObject({ actionKey: keyMap.NUM4,
 			name: "Player 3",
@@ -35,7 +37,8 @@ var playerController = {
 				y: 200,
 				id: "key3",
 				name: "NUM4"
-			}
+			},
+			head: jsGFwk.Sprites.head2
 		});
 		players.cloneObject({ actionKey: keyMap.NUM6,
 			name: "Player 4",
@@ -46,7 +49,8 @@ var playerController = {
 				y: 200,
 				id: "key4",
 				name: "NUM6"
-			}		
+			},
+			head: jsGFwk.Sprites.head2
 		});
 	},
 	update: function (delta) {

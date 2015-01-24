@@ -1,4 +1,4 @@
-/*global window, document, player, jsGFwk, keyMap, StartGameTimer, hud, background, soap, gameOverScreen, playerController, util */
+/*global introAnim, window, document, player, jsGFwk, keyMap, StartGameTimer, hud, background, soap, gameOverScreen, playerController, util */
 var players;
 
 window.onload = function init() {
@@ -35,7 +35,7 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "cloud", source: "images/cloud.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "animBackground", source: "images/animbackground.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "animSoap", source: "images/animSoap.png" });
-
+	jsGFwk.ResourceManager.addGraphic({	name: "head1", source: "images/Head.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
@@ -75,7 +75,8 @@ window.onload = function init() {
 				
 				jsGFwk.Sprites.createSpriteCollection("playerMirror", 
 					jsGFwk.ResourceManager.graphics.prisoner.image,
-					mirroredPlayerSpritesAtlas);			
+					mirroredPlayerSpritesAtlas);
+				
 				jsGFwk.Sprites.createSprite({
 					id: "hudSoap",
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
@@ -95,7 +96,21 @@ window.onload = function init() {
 					id: "hudBar",
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
 					left: 10, top: 477, width: 284, height: 158 });
-		  
+
+				jsGFwk.Sprites.createSprite({
+					id: "head1",
+					graphic: jsGFwk.ResourceManager.graphics.head1.image,
+					left: 0, top: 0, width: 80, height: 90,
+					inverted: true
+				});
+				
+				jsGFwk.Sprites.createSprite({
+					id: "head2",
+					graphic: jsGFwk.ResourceManager.graphics.head1.image,
+					left: 0, top: 0, width: 80, height: 90,
+					inverted: false 
+				});
+	
 				players = jsGFwk.Container.createContainer("players", player);
 				
 				var timer = new StartGameTimer(5, 5, function startCallback() {
@@ -109,8 +124,8 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
-				jsGFwk.Scenes.scenes.hud.enable();
-				//jsGFwk.Scenes.scenes.game.enable();
+				//jsGFwk.Scenes.scenes.hud.enable();
+				jsGFwk.Scenes.scenes.game.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
 		},

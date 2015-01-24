@@ -1,4 +1,4 @@
-/* global jsGFwk, util, console, Button*/
+/* global jsGFwk, util, console, Button, players, PlayerHead, gameOverScreen*/
 
 
 var player = {
@@ -22,9 +22,11 @@ var player = {
 		self.spriteBag = settings.imageCollection.spriteBag;
 		self.currentImageCollection = settings.imageCollection;
 		var bs = settings.buttonSettings;
-		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name	);
+		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name);
+		self.head = new PlayerHead(self, settings.head);
 		self.enabled = false;
 		self.name = settings.name;
+		self.currentFrame = 0;
 		console.log(self.currentImageCollection.spriteBag);
 		
 		this.temptationApproachTimer = new jsGFwk.Timer({
@@ -70,13 +72,16 @@ var player = {
 		this.updateStates[state].call(this, delta);
 	},
 	onDraw: function (ctx) {
-		var currentImage = this.spriteBag[parseInt((99 - this.soapTemptationMeter) / 100 * this.spriteBag.length)];
+		this.currentFrame = parseInt((99 - this.soapTemptationMeter) / 100 * this.spriteBag.length);
+		var currentImage = this.spriteBag[this.currentFrame];
 		ctx.save();
 		ctx.fillStyle = "black";
 		ctx.font = "24pt zxBold";
 		ctx.fillText(this.soapTemptationMeter, this.x, this.y);
 		ctx.drawImage(currentImage.image, this.x, this.y);
 		ctx.restore();
+
+		this.head.draw(ctx);
 		if (this.button) {
 			this.button.onDraw(ctx);
 		}

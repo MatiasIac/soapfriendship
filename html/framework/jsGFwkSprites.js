@@ -112,7 +112,7 @@ jsGFwk.Sprites = {
 		jsGFwk.Sprites[spriteObject.id].width = spriteObject.width;
 		jsGFwk.Sprites[spriteObject.id].height = spriteObject.height;
 		jsGFwk.Sprites[spriteObject.id].image = new Image();
-		
+		jsGFwk.Sprites[spriteObject.id].inverted = spriteObject.inverted;
 		jsGFwk.Sprites[spriteObject.id].image.src = this._genSprite(spriteObject, filter);
 	},
 		
