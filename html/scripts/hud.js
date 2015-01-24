@@ -3,20 +3,23 @@ var hud = {
 	mouseClickId: 0,
 	fakeMouse: { x: 0, y: 0, width: 1, height: 1 },
 	soapApproachTimer: {}, soapX: 0, soapY: 500, segment: 0,
-	flashTimer: {},
+	flashTimer: {}, transparent: 1,
 	visible: true,
 	showMano: false,
 	init: function () {
 		var self = this;
 		jsGFwk.Collisions.onObjectCreated(this.fakeMouse);
 		
+		this.transparent = 1;
+		this.segment = 0;
+		this.showMano = false;
+		this.soapY = 500;
+		
 		this.mouseClickId = jsGFwk.IO.mouse.registerClick(function (coord) {
 			self.fakeMouse.x = coord.x;
 			self.fakeMouse.y = coord.y;
 			jsGFwk.IO.mouse.unregisterClick(self.mouseClickId);
-			players.clearAll();
 			jsGFwk.Scenes.scenes.game.enable();
-			
 		});
 		
 		this.particles1 = new cParticleEmitter();
@@ -78,9 +81,13 @@ var hud = {
 	_updateNormal: function (delta) {
 		if (this.segment < 1) {
 			this.soapApproachTimer.tick(delta);
-		} else if (!this.showMano) {
-			this._drawPointer = this._drawFlashPointer;
-			this._updatePointer = this._updateFlash;
+		} else/* if (!this.showMano) */{
+			if (this.transparent >= 0) {
+				this.showMano = true;
+				this.transparent -= 0.01;
+			}
+			//this._drawPointer = this._drawFlashPointer;
+			//this._updatePointer = this._updateFlash;
 		}
 	},
 	_updateFlash: function (delta) {
@@ -112,10 +119,12 @@ var hud = {
 			this.particles1.renderParticles(context);
 			
 			if (this.showMano) {
-				//context.drawImage(jsGFwk.Sprites.hudBar.image, 200, 322);
 				context.drawImage(jsGFwk.ResourceManager.graphics.mano.image, 108, 72);
 				context.drawImage(jsGFwk.Sprites.hudSoapText.image, 100, 50);
 				context.drawImage(jsGFwk.Sprites.hudSoapText2.image, 50, 80);
+				
+				context.fillStyle = "rgba(255,255,255," + this.transparent + ")";
+				context.fillRect(0,0,640,480);
 			} else {
 				context.drawImage(jsGFwk.Sprites.hudSoap.image, 118, this.soapY);
 			}
