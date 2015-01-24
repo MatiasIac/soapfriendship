@@ -19,7 +19,7 @@ var playerController = {
 		});
 		players.cloneObject({ actionKey: keyMap.F,
 			name: "Player 2",
-		 	x: 155, y: 75,
+		 	x: 155, y: 85,
 			imageCollection: jsGFwk.Sprites.prisoner2,
 			buttonSettings:  {
 				x: 200,
@@ -31,7 +31,7 @@ var playerController = {
 		});
 		players.cloneObject({ actionKey: keyMap.NUM4,
 			name: "Player 3",
-		 	x: 360, y: 70,
+		 	x: 360, y: 90,
 			imageCollection: jsGFwk.Sprites.prisoner3,
 			buttonSettings:  {
 				x: 350,
