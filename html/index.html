@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Centry Attack</title>
+		<title>Code Name: Soap Friendship</title>
 	</head>
 	<script language="Javascript" src="framework/jsGFwk.js"></script>
 	<script language="Javascript" src="framework/jsGFwk2dFastAnimation.js"></script>
@@ -16,13 +16,13 @@
 	<script language="Javascript" src="framework/jsGFwkJukebox.js"></script>
 	
 	<body style="border:0px; margin:0px;
-		padding:0px; background-color: black;">
+		padding:0px; background-color: pink;">
 		<canvas width="640" height="480" id="canvas"></canvas>
 	</body>
 </html>
 <script>
 	jsGFwk.settings.canvas = "canvas";
-	jsGFwk.settings.clearColor = "rgb(50, 50, 50)";
+	jsGFwk.settings.clearColor = "lightpink";
 	jsGFwk.settings.frameRate = 1000 / 60;
 	
 	jsGFwk.include("FastAnimation");
@@ -50,8 +50,9 @@
 		update: function(delta) { },
 		draw: function (context) { 
 			context.save();
-				context.fillStyle = "white";
-				context.fillText("Connecting..." + parseInt((jsGFwk.ResourceManager._totalLoadedResources * 100) / jsGFwk.ResourceManager._totalResources) + "%",30, 40);
+				context.fillStyle = "black";
+				context.font = "12pt arial"
+				context.fillText("Rubbing..." + parseInt((jsGFwk.ResourceManager._totalLoadedResources * 100) / jsGFwk.ResourceManager._totalResources) + "%",30, 40);
 			context.restore();
 		}
 	});
