@@ -38,10 +38,10 @@ window.onload = function init() {
     }
   });
 */
-	jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
-	jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController] });
+	players = jsGFwk.Container.createContainer("players", player);
 
-	var players = jsGFwk.Container.createContainer("players", player);
+	jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
+	jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players] });
 	
 	jsGFwk.Scenes.scenes.hud.enable();
 	

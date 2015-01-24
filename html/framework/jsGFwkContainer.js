@@ -69,7 +69,6 @@ jsGFwk.Container = (function() {
 	_createContainer = function (containerName, settings) {
 		var newContainer = new container(settings);
 		newContainer.id = containerName;
-		jsGFwk.createObject(newContainer);
         return newContainer;
 	};
 

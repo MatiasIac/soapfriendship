@@ -2,7 +2,8 @@ var playerController = {
 	id: "playerController",
 	visible: false,
 	init: function () { 
-		//jsGFwk._gameObjects.players.cloneObject({ actionKey: keyMap.A});
+		players.cloneObject({ actionKey: keyMap.A});
+		players.cloneObject({ actionKey: keyMap.F});
 	},
 	update: function (delta) {
 	}
