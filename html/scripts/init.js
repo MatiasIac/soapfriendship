@@ -1,7 +1,7 @@
 /*global window, document, player, jsGFwk, keyMap*/
 window.onload = function init() {
   jsGFwk.settings.canvas = "canvas";
-  jsGFwk.settings.clearColor = "rgb(50, 50, 50)";
+  jsGFwk.settings.clearColor = "lightpink";
   jsGFwk.settings.frameRate = 1000 / 60;
 
   jsGFwk.include("FastAnimation");
@@ -38,7 +38,12 @@ window.onload = function init() {
     }
   });
 */
-  var players = jsGFwk.Container.createContainer("players", player);
-  jsGFwk._gameObjects.players.cloneObject({ actionKey: keyMap.A});
-  jsGFwk.start();
+	jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
+	jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController] });
+
+	var players = jsGFwk.Container.createContainer("players", player);
+	
+	jsGFwk.Scenes.scenes.hud.enable();
+	
+	jsGFwk.start();
 };
