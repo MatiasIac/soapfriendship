@@ -1,4 +1,4 @@
-/*global window, document, player, jsGFwk*/
+/*global window, document, player, jsGFwk, keyMap*/
 window.onload = function init() {
   jsGFwk.settings.canvas = "canvas";
   jsGFwk.settings.clearColor = "rgb(50, 50, 50)";
@@ -38,7 +38,7 @@ window.onload = function init() {
     }
   });
 */
-  jsGFwk.Container.createContainer("players", player);
-
+  var players = jsGFwk.Container.createContainer("players", player);
+  jsGFwk._gameObjects.players.cloneObject({ actionKey: keyMap.A});
   jsGFwk.start();
 };
