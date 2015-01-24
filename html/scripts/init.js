@@ -80,7 +80,8 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
-				jsGFwk.Scenes.scenes.hud.enable();
+				//jsGFwk.Scenes.scenes.hud.enable();
+				jsGFwk.Scenes.scenes.game.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
 		},
