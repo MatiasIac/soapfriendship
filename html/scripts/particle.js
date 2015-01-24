@@ -50,9 +50,14 @@ function cParticleEmitter(){
 	this.emitCounter = 0;
 	this.particleIndex = 0;
 	
-	this.init = function(){
+	this.init = function(useImage){
 		this.emissionRate = this.maxParticles / this.lifeSpan;
 		this.emitCounter = 0;
+		
+		if (useImage) {
+		} else {
+			this._render = this._renderGradiant;
+		}
 	};
 	
 	this.addParticle = function(){
@@ -70,7 +75,7 @@ function cParticleEmitter(){
 		return true;
 	};
 	
-	this.initParticle = function( particle ){
+	this.initParticle = function(particle) {
 		var RANDM1TO1 = function(){ return Math.random() * 2 - 1; };
 		
 		particle.position.x = this.position.x + this.positionRandom.x * RANDM1TO1();
@@ -111,7 +116,7 @@ function cParticleEmitter(){
 		particle.deltaColour[ 3 ] = ( end[ 3 ] - start[ 3 ] ) / particle.timeToLive;
 	};
 	
-	this.update = function( delta ){
+	this.update = function(delta) {
 		if( this.active && this.emissionRate > 0 ){
 			var rate = 1 / this.emissionRate;
 			this.emitCounter += delta;
@@ -177,13 +182,19 @@ function cParticleEmitter(){
 			var x = ~~particle.position.x;
 			var y = ~~particle.position.y;
 					
-			var radgrad = context.createRadialGradient( x + halfSize, y + halfSize, particle.sizeSmall, x + halfSize, y + halfSize, halfSize);  
-			radgrad.addColorStop( 0, particle.drawColour );   
-			radgrad.addColorStop( 1, 'rgba(0,0,0,0)' ); //Super cool if you change these values (and add more colour stops)
-			context.fillStyle = radgrad;
-		  	context.fillRect( x, y, size, size );
+			this._render(particle, size, halfSize, x, y, context);
 		}
-	};	
+	};
+	
+	this._render = function () {};
+	
+	this._renderGradiant = function (particle, size, halfSize, x, y, context) {
+		var radgrad = context.createRadialGradient(x + halfSize, y + halfSize, particle.sizeSmall, x + halfSize, y + halfSize, halfSize);  
+		radgrad.addColorStop(0, particle.drawColour);
+		radgrad.addColorStop(1, 'rgba(0,0,0,0)'); //Super cool if you change these values (and add more colour stops)
+		context.fillStyle = radgrad;
+		context.fillRect(x, y, size, size);
+	};
 }
 
 /* Vector Helper */
