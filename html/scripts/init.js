@@ -1,5 +1,5 @@
-/*global document, jsGFwk*/
-document.onload = function init() {
+/*global window, document, jsGFwk*/
+window.onload = function init() {
   jsGFwk.settings.canvas = "canvas";
   jsGFwk.settings.clearColor = "rgb(50, 50, 50)";
   jsGFwk.settings.frameRate = 1000 / 60;
