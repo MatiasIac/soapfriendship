@@ -31,10 +31,10 @@ var player = {
 		
 		this.temptationApproachTimer = new jsGFwk.Timer({
 			action: function () {
-	 			self.soapTemptationMeter = util.wrap(self.soapTemptationMeter - 1, 0, 99);
+	 			self.soapTemptationMeter = util.wrap(self.soapTemptationMeter - 3, 0, 99);
 			},
 			//Player ducking speed. Recommended: 5
-			tickTime: 2
+			tickTime: 4
 		});
 	},
 	updateStates: {
@@ -57,8 +57,8 @@ var player = {
 			
 			if (this.soapTemptationMeter <= 0) {
 				gameOverScreen.winner = this;
-				jsGFwk.Scenes.scenes.gameOver.enable();
-				players.clearAll();
+				//jsGFwk.Scenes.scenes.gameOver.enable();
+				//players.clearAll();
 			}
 			
 		},

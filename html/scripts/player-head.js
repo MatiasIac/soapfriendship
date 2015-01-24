@@ -6,14 +6,14 @@ var PlayerHead = function(player, head) {
 	this.angle = 0;
 	
 	this._headPositions = [
-		{x: 88, y: 9, angle: 0},
-		{x: 79, y: 19, angle: -10},
-		{x: 70, y: 30, angle: -15},
-		{x: 62, y: 43, angle: -20},
-		{x: 55, y: 55, angle: -25},
-		{x: 48, y: 69, angle: -30},
-		{x: 42, y: 83, angle: -32},
-		{x: 36, y: 98, angle: -34},
+		{x: 88, y: 6, angle: 0},
+		{x: 79, y: 16, angle: -1},
+		{x: 70, y: 27, angle: -2},
+		{x: 62, y: 40, angle: -3},
+		{x: 55, y: 52, angle: -3},
+		{x: 48, y: 66, angle: -4},
+		{x: 42, y: 80, angle: -4},
+		{x: 36, y: 95, angle: -4},
 	];
 };
 
@@ -23,9 +23,9 @@ PlayerHead.prototype.draw = function draw(ctx) {
 	var headPosition = this._headPositions[currentFrame];
 	if (headPosition) {
 		ctx.save();
-		ctx.translate(this.player.x + headPosition.x * this.inverted, this.player.y + headPosition.y);
+		ctx.translate(this.player.x + (this.inverted === 1 ? headPosition.x : - headPosition.x + 160), this.player.y + headPosition.y);
 		ctx.rotate(jsGFwk.Effects.degreeToRadians(headPosition.angle) * this.inverted);
-		ctx.translate(-44, -70);
+		ctx.translate(-36, -70);
 		ctx.drawImage(this.head.image, 0, 0);
 		ctx.restore();
 	}

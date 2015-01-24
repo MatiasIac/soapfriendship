@@ -36,6 +36,8 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "animBackground", source: "images/animbackground.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "animSoap", source: "images/animSoap.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "head1", source: "images/Head.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "showers", source: "images/showers.png" });
+	
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,

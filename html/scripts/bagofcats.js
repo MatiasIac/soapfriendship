@@ -1,3 +1,4 @@
+var buttonHeight = 400;
 var keyMap = {
   "A": 65,
   "F": 70,
