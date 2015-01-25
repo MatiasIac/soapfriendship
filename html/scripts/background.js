@@ -31,7 +31,7 @@ var background = {
 		this.particles3 = new cParticleEmitter();
 		this.particles3.init();
 		this.particles3.position.y = 27;
-		this.particles3.position.x = 428;
+		this.particles3.position.x = 438;
 		this.setParticle(this.particles3);
 		
 		this.particles4 = new cParticleEmitter();
