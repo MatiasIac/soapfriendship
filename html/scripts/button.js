@@ -39,7 +39,6 @@ Button.prototype.onDraw = function(ctx) {
 	ctx.fillRect(this.x + 65, this.y, 10, 50 - this.player.soapTemptationMeter / 2);
 
 	ctx.font = "16pt zxBold";
-	ctx.fillText(parseInt(this.player.distanceToSoap), this.x + 30, this.y + 30);
 	ctx.restore();
 	
 	

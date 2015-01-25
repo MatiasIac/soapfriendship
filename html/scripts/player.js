@@ -128,7 +128,7 @@ var player = {
 		ctx.save();
 		ctx.fillStyle = "black";
 		ctx.font = "24pt zxBold";
-		ctx.fillText(this.soapTemptationMeter, this.x, this.y);
+		
 		ctx.drawImage(currentImage.image, this.x, this.y);
 		ctx.restore();
 

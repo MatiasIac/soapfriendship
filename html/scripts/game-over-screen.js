@@ -34,14 +34,28 @@ GameOverScreen.prototype.update = function(delta) {
 
 GameOverScreen.prototype.draw = function(ctx) {
 	ctx.save();
-		ctx.fillStyle = "black";
-		ctx.font = "24pt zxBold";
-		if (this.winner) {	
-			ctx.fillText(this.winner.name + " wins!", 320, 240);	
+		switch (this.winner.name) {
+			case "Player 1":
+				ctx.drawImage(jsGFwk.ResourceManager.graphics.gameover1.image, 0, 0);
+				break;
+			case "Player 2":
+				ctx.drawImage(jsGFwk.ResourceManager.graphics.gameover2.image, 0, 0);
+				break;
+			case "Player 3":
+				ctx.drawImage(jsGFwk.ResourceManager.graphics.gameover3.image, 0, 0);
+				break;
+			case "Player 4":
+				ctx.drawImage(jsGFwk.ResourceManager.graphics.gameover4.image, 0, 0);
+				break;
+			default:
+				ctx.drawImage(jsGFwk.ResourceManager.graphics.gameover1.image, 0, 0);
+				break;
 		}
+		ctx.fillStyle = "black";
+		ctx.font = "35pt zxBold";
+
 		
 		ctx.textAlign = "center";
-		ctx.font = "24pt zxBold";
 
 		ctx.fillText("Retry?", 130, 380);
 		ctx.drawImage(jsGFwk.Sprites.button.spriteBag[1].image, 100, 400);
@@ -49,7 +63,13 @@ GameOverScreen.prototype.draw = function(ctx) {
 		ctx.fillText("Main Menu", 480, 380);
 		ctx.drawImage(jsGFwk.Sprites.button.spriteBag[1].image, 450, 400);
 		
+		if (this.winner) {	
+			ctx.fillText(this.winner.name + " wins... new friends!", 320, 40);	
+		}
 	ctx.restore();
+
+	
+	
 };
 
 

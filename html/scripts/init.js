@@ -73,7 +73,10 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "headv2", source: "images/head-guy2.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "headv3", source: "images/head-guy3.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "headv4", source: "images/head-guy4.png" });
-	
+	jsGFwk.ResourceManager.addGraphic({	name: "gameover1", source: "images/gameover_player1-01.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "gameover2", source: "images/gameover_player2-01.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "gameover3", source: "images/gameover_player3-01.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "gameover4", source: "images/gameover_player4-01.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
@@ -111,7 +114,7 @@ window.onload = function init() {
 					id: "hudSoap",
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
 					left: 0, top: 0, width: 405, height: 259 });
-					
+				
 				jsGFwk.Sprites.createSprite({
 					id: "hudSoapText",
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
@@ -164,8 +167,10 @@ window.onload = function init() {
 		update: function (delta) { },
 		draw: function (context) {
 			context.save();
+				context.textAlign = "center";
+				context.font = "24pt arial";
 				context.fillStyle = "black";
-				context.fillText("Rubbing..." + parseInt((jsGFwk.ResourceManager._totalLoadedResources * 100) / jsGFwk.ResourceManager._totalResources) + "%", 30, 40);
+				context.fillText("Rubbing..." + parseInt((jsGFwk.ResourceManager._totalLoadedResources * 100) / jsGFwk.ResourceManager._totalResources) + "%", 200, 240);
 				/*context.drawImage(jsGFwk.ResourceManager.graphics.loadingSoap.image,
 					300, 200);*/
 			context.restore();

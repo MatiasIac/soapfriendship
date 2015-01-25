@@ -23,7 +23,7 @@ var background = {
 			jsGFwk.ResourceManager.sounds.musica.audio.play();
 		}
 		
-		jsGFwk.ResourceManager.sounds.shower.audio.volume = 0.1;
+		jsGFwk.ResourceManager.sounds.shower.audio.volume = 0.4;
 		jsGFwk.ResourceManager.sounds.shower.audio.loop = true;
 		jsGFwk.ResourceManager.sounds.shower.audio.currentTime = 0;
 		jsGFwk.ResourceManager.sounds.shower.audio.play();
