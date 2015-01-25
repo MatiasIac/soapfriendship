@@ -19,6 +19,11 @@ window.onload = function init() {
 
 	jsGFwk.Fonts.createFont({ name: 'zxBold', source: 'fonts/zxBold.ttf' });
 	
+	util.addOggSound("sounds/brillo.ogg", "shineSound");
+	util.addOggSound("sounds/shower.ogg", "showerSound");
+	util.addOggSound("sounds/jabon.ogg", "showerMusic");
+	util.addOggSound("sounds/jabon.ogg", "soapSound");
+	
 	jsGFwk.ResourceManager.addGraphic({	name: "loadingSoap", source: "images/loadingSoap.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubSprite", source: "images/hudMainSprites.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubBackground", source: "images/hudBackground.png" });

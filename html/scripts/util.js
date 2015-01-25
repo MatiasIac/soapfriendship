@@ -209,11 +209,17 @@ var util = (function() {
 		};
 	};
 	
+	var addOggSound = function(source, name) {
+		var sources = {};
+		sources[jsGFwk.ResourceManager.sounds.format.ogg] = { source: source };
+		jsGFwk.ResourceManager.addSound({ name: name, sources: sources});	
+	}
 	
 	return {
 		wrap: wrap,
 		makeAtlas: makeAtlas,
-		createPrisonerHeads: createPrisonerHeads
+		createPrisonerHeads: createPrisonerHeads,
+		addOggSound: addOggSound 
 	};
 	
 }());
