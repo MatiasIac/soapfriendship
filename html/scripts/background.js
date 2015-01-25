@@ -16,6 +16,13 @@ var background = {
 	},
 	
 	init: function () {
+		if (jsGFwk.ResourceManager.sounds.musica.audio.paused) {
+			jsGFwk.ResourceManager.sounds.musica.audio.volume = 0.2;
+			jsGFwk.ResourceManager.sounds.musica.audio.loop = true;
+			jsGFwk.ResourceManager.sounds.musica.audio.currentTime = 0;
+			jsGFwk.ResourceManager.sounds.musica.audio.play();
+		}
+	
 		this.particles = new cParticleEmitter();
 		this.particles.init();
 		this.particles.position.y = 27;
