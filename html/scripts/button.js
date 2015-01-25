@@ -31,18 +31,22 @@ Button.prototype.onDraw = function(ctx) {
 	
 	ctx.fillStyle = "#FF0000";
 	ctx.fillRect(this.x + 80, this.y, 10, 50);
+	ctx.fillStyle = "#BB0000";
+	ctx.fillRect(this.x + 80, this.y, 10, 50 - this.player.distanceToSoap / 2);
 	ctx.fillStyle = "#00FF00";
 	ctx.fillRect(this.x + 65, this.y, 10, 50);
+	ctx.fillStyle = "#00BB00";
+	ctx.fillRect(this.x + 65, this.y, 10, 50 - this.player.soapTemptationMeter / 2);
 
-	
-	
+	ctx.font = "16pt zxBold";
+	ctx.fillText(parseInt(this.player.distanceToSoap), this.x + 30, this.y + 30);
 	ctx.restore();
 	
 	
 };
 
 Button.prototype.toggle = function() {
-	this.toggled = !toggled;
+	this.toggled = !this.toggled;
 };
 
 

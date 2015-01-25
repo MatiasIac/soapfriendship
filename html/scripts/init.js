@@ -25,19 +25,26 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "bubble", source: "images/bubuja.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "mano", source: "images/mano.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "button", source: "images/button.png" });
-	jsGFwk.ResourceManager.addGraphic({	name: "prisoner", source: "images/prisoner.png" });
+	
+
 	jsGFwk.ResourceManager.addGraphic({	name: "prisoner1", source: "images/PrisionGuy1.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "prisoner2", source: "images/PrisionGuy2.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "prisoner3", source: "images/PrisionGuy3.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "prisoner4", source: "images/PrisionGuy4.png" });
-	jsGFwk.ResourceManager.addGraphic({	name: "prisonerHead", source: "images/prisoner.png" });
+	
+
 	jsGFwk.ResourceManager.addGraphic({	name: "light", source: "images/light.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "cloud", source: "images/cloud.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "animBackground", source: "images/animbackground.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "animSoap", source: "images/animSoap.png" });
-	jsGFwk.ResourceManager.addGraphic({	name: "head1", source: "images/Head.png" });
+	
 	jsGFwk.ResourceManager.addGraphic({	name: "showers", source: "images/backshawer.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "heads", source: "images/head-test.png" });
+	
+	jsGFwk.ResourceManager.addGraphic({	name: "headv1", source: "images/head-guy1.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "headv2", source: "images/head-guy2.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "headv3", source: "images/head-guy3.png" });
+	jsGFwk.ResourceManager.addGraphic({	name: "headv4", source: "images/head-guy4.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
@@ -56,10 +63,6 @@ window.onload = function init() {
 				var prisonerAtlas = util.makeAtlas(167, 275, 8, false);
 				var prisonerAtlasMirror = util.makeAtlas(167, 275, 8, true);
 				
-
-				jsGFwk.Sprites.createSpriteCollection("player", 
-					jsGFwk.ResourceManager.graphics.prisoner.image,
-					playerSpritesAtlas);
 				
 				jsGFwk.Sprites.createSpriteCollection("prisoner1", 
 					jsGFwk.ResourceManager.graphics.prisoner1.image,
@@ -76,10 +79,6 @@ window.onload = function init() {
 				jsGFwk.Sprites.createSpriteCollection("prisoner4", 
 					jsGFwk.ResourceManager.graphics.prisoner4.image,
 					prisonerAtlas);	
-				
-				jsGFwk.Sprites.createSpriteCollection("playerMirror", 
-					jsGFwk.ResourceManager.graphics.prisoner.image,
-					mirroredPlayerSpritesAtlas);
 				
 				jsGFwk.Sprites.createSprite({
 					id: "hudSoap",
@@ -101,19 +100,6 @@ window.onload = function init() {
 					graphic: jsGFwk.ResourceManager.graphics.hubSprite.image,
 					left: 10, top: 477, width: 284, height: 158 });
 
-				jsGFwk.Sprites.createSprite({
-					id: "head1",
-					graphic: jsGFwk.ResourceManager.graphics.head1.image,
-					left: 0, top: 0, width: 80, height: 90,
-					inverted: true
-				});
-				
-				jsGFwk.Sprites.createSprite({
-					id: "head2",
-					graphic: jsGFwk.ResourceManager.graphics.head1.image,
-					left: 0, top: 0, width: 80, height: 90,
-					inverted: false 
-				});
 	
 				players = jsGFwk.Container.createContainer("players", player);
 				
@@ -125,7 +111,7 @@ window.onload = function init() {
 								
 				jsGFwk.Scenes.create({name: "hud", gameObjects: [hud] });
 				jsGFwk.Scenes.create({name: "introAnim", gameObjects: [introAnim] });
-				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
+				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, soap, players, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
 				//jsGFwk.Scenes.scenes.hud.enable();

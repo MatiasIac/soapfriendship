@@ -20,6 +20,7 @@ var playerController = {
 			},
 			head: this.prisonerHeads.normal
 		});
+		
 		players.cloneObject({ actionKey: keyMap.F,
 			name: "Player 2",
 		 	x: 155, y: 85,
@@ -30,8 +31,9 @@ var playerController = {
 				id: "key2",
 				name: "F"
 			},
-			head: this.prisonerHeads.normal
+			head: this.prisonerHeads.normal2
 		});
+		
 		players.cloneObject({ actionKey: keyMap.NUM4,
 			name: "Player 3",
 		 	x: 360, y: 90,
@@ -54,7 +56,7 @@ var playerController = {
 				id: "key4",
 				name: "NUM6"
 			},
-			head: this.prisonerHeads.mirror
+			head: this.prisonerHeads.mirror2
 		});
 	},
 	update: function (delta) {

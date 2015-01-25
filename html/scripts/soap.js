@@ -1,7 +1,7 @@
 var soap = {
 	id: "soap",
 	visible: true,
-	x: 11, y: 360,
+	x: 11, y: 365,
 	sizePorcentege: 0.5,
 	soapSpeed: 1, soapDirection: 1,
 	soapTimer: {},
@@ -21,7 +21,7 @@ var soap = {
 		this.soapTimer = new jsGFwk.Timer({
 			action: function () {
 			   self.x += (self.soapSpeed * self.soapDirection);
-			   if (self.x > 600 || self.x < 10) {
+			   if (self.x > 700 || self.x < -80) {
 				self.soapDirection *= -1;
 			   }
 			}, 
