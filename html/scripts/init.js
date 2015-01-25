@@ -128,7 +128,8 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 								
 				//jsGFwk.Scenes.scenes.hud.enable();
-				jsGFwk.Scenes.scenes.game.enable();
+				//jsGFwk.Scenes.scenes.game.enable();
+				jsGFwk.Scenes.scenes.gameOver.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
 		},
