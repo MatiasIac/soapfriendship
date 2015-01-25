@@ -37,13 +37,14 @@ window.onload = function init() {
 	jsGFwk.ResourceManager.addGraphic({	name: "animSoap", source: "images/animSoap.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "head1", source: "images/Head.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "showers", source: "images/backshawer.png" });
-	
+	jsGFwk.ResourceManager.addGraphic({	name: "heads", source: "images/head-test.png" });
 	jsGFwk.createObject({
 		id: "progress",
 		visible: true,
 		barWidth: 0,
 		init: function () {
 			jsGFwk.ResourceManager.onResourcesLoadedCompleted = function () {
+
 				
 				jsGFwk.Sprites.createSpriteCollection("button", 
 					jsGFwk.ResourceManager.graphics.button.image, 
@@ -55,6 +56,7 @@ window.onload = function init() {
 				var prisonerAtlas = util.makeAtlas(167, 275, 8, false);
 				var prisonerAtlasMirror = util.makeAtlas(167, 275, 8, true);
 				
+
 				jsGFwk.Sprites.createSpriteCollection("player", 
 					jsGFwk.ResourceManager.graphics.prisoner.image,
 					playerSpritesAtlas);
@@ -115,9 +117,9 @@ window.onload = function init() {
 	
 				players = jsGFwk.Container.createContainer("players", player);
 				
-				var timer = new StartGameTimer(5, 5, function startCallback() {
+				var timer = new StartGameTimer(5, 50, function startCallback() {
 					players.eachCloned(function(clone) {
-						clone.enabled = true;
+						clone.enable();
 					});
 				});
 								
@@ -126,8 +128,8 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
-				//jsGFwk.Scenes.scenes.hud.enable();
-				jsGFwk.Scenes.scenes.game.enable();
+				jsGFwk.Scenes.scenes.hud.enable();
+				//jsGFwk.Scenes.scenes.game.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
 		},

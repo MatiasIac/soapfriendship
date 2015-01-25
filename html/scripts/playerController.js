@@ -1,9 +1,12 @@
-/*global players, keyMap, jsGFwk, button*/
+/*global players, keyMap, jsGFwk, button, buttonHeight, util*/
 
-var playerController = {
+
+var playerController = {	
+
 	id: "playerController",
 	visible: false,
 	init: function () {
+		this.prisonerHeads = util.createPrisonerHeads();
 		players.clearAll();
 		players.cloneObject({ actionKey: keyMap.A,
 			name: "Player 1",
@@ -15,7 +18,7 @@ var playerController = {
 				id: "key1",
 				name: "A"
 			},
-			head: jsGFwk.Sprites.head1
+			head: this.prisonerHeads.normal
 		});
 		players.cloneObject({ actionKey: keyMap.F,
 			name: "Player 2",
@@ -27,7 +30,7 @@ var playerController = {
 				id: "key2",
 				name: "F"
 			},
-		 	head: jsGFwk.Sprites.head1
+			head: this.prisonerHeads.normal
 		});
 		players.cloneObject({ actionKey: keyMap.NUM4,
 			name: "Player 3",
@@ -39,7 +42,7 @@ var playerController = {
 				id: "key3",
 				name: "NUM4"
 			},
-			head: jsGFwk.Sprites.head2
+			head: this.prisonerHeads.mirror
 		});
 		players.cloneObject({ actionKey: keyMap.NUM6,
 			name: "Player 4",
@@ -51,7 +54,7 @@ var playerController = {
 				id: "key4",
 				name: "NUM6"
 			},
-			head: jsGFwk.Sprites.head2
+			head: this.prisonerHeads.mirror
 		});
 	},
 	update: function (delta) {

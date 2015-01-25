@@ -14,6 +14,7 @@ var player = {
 	currentImageCollection: null,
 	button: null,
 	onInit: function (settings) {
+		this.state = "idle";
 		this._censorshipOffset = { x: 55, y: [100, 120, 130, 140, 150, 155, 165, 165]};
 		var self = this;
 		self.timer = 0;
@@ -26,10 +27,12 @@ var player = {
 		var bs = settings.buttonSettings;
 		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name);
 		self.head = new PlayerHead(self, settings.head);
+		self.head.init();
 		self.enabled = false;
 		self.name = settings.name;
 		self.currentFrame = 0;
 		console.log(self.currentImageCollection.spriteBag);
+		
 		
 		this.temptationApproachTimer = new jsGFwk.Timer({
 			action: function () {
@@ -59,21 +62,39 @@ var player = {
 			
 			if (this.soapTemptationMeter <= 0) {
 				gameOverScreen.winner = this;
+				
+				players.eachCloned(function(player) {
+					player.enabled = false;
+				});
 				//jsGFwk.Scenes.scenes.gameOver.enable();
 				//players.clearAll();
 			}
-			
+			this.head.update(delta);
 		},
 		
 		idle: function() {
 		
+		},
+		
+		winAnimation: function() {
+		
 		}
+	
 	},
 	onUpdate: function (delta) {
-		var state = this.enabled ? "enabled" : "idle";
 		this.timer += delta * Math.random();
-		this.updateStates[state].call(this, delta);
+		this.updateStates[this.state].call(this, delta);
 	},
+	
+	enable: function () {
+		this.state = "enabled";
+	},
+	
+	disable: function() {
+		this.state = "idle";
+	},
+	
+
 	onDraw: function (ctx) {
 		
 		this.currentFrame = parseInt((99 - this.soapTemptationMeter) / 100 * this.spriteBag.length);
