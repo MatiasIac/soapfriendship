@@ -33,8 +33,7 @@ var player = {
 		self.enabled = false;
 		self.name = settings.name;
 		self.currentFrame = 0;
-		console.log(self.currentImageCollection.spriteBag);
-		
+		//console.log(self.currentImageCollection.spriteBag);
 		
 		this.temptationApproachTimer = new jsGFwk.Timer({
 			action: function () {
@@ -67,6 +66,8 @@ var player = {
 			}
 			
 			if (this.soapTemptationMeter <= 0) {
+				jsGFwk.ResourceManager.sounds.musica.audio.pause();
+			
 				gameOverScreen.winner = this;
 				
 				players.eachCloned(function(player) {
@@ -75,6 +76,8 @@ var player = {
 				this.enable();
 				this.head.animation = this.head.head.look4;
 				this.head.animationFrame = 0;
+				
+				jsGFwk.ResourceManager.sounds.voz6.audio.play();
 				
 				this.head.onAnimationEnd = function() {
 					self.head.animate = false;

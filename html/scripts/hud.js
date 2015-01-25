@@ -7,6 +7,11 @@ var hud = {
 	visible: true, tapBlink: false, tiltTimer: {},
 	showMano: false, handAngle: 0, handAngleCounter: 0.1,
 	init: function () {
+		jsGFwk.ResourceManager.sounds.musica.audio.volume = 0.2;
+		jsGFwk.ResourceManager.sounds.musica.audio.loop = true;
+		jsGFwk.ResourceManager.sounds.musica.audio.currentTime = 0;
+		jsGFwk.ResourceManager.sounds.musica.audio.play();
+	
 		var self = this;
 		jsGFwk.Collisions.onObjectCreated(this.fakeMouse);
 		
