@@ -34,6 +34,11 @@ window.onload = function init() {
 		voz6[jsGFwk.ResourceManager.sounds.format.mp3] = { source: "sounds/voz6.mp3" };
 	jsGFwk.ResourceManager.addSound({ name: "voz6", sources: voz6 });
 	
+	var brillo = {};
+		brillo[jsGFwk.ResourceManager.sounds.format.ogg] = { source: "sounds/brillo.ogg" };
+		brillo[jsGFwk.ResourceManager.sounds.format.mp3] = { source: "sounds/brillo.mp3" };
+	jsGFwk.ResourceManager.addSound({ name: "brillo", sources: brillo });
+	
 	jsGFwk.ResourceManager.addGraphic({	name: "loadingSoap", source: "images/loadingSoap.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubSprite", source: "images/hudMainSprites.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubBackground", source: "images/hudBackground.png" });
@@ -127,9 +132,9 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, soap, players, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 								
-				//jsGFwk.Scenes.scenes.hud.enable();
+				jsGFwk.Scenes.scenes.hud.enable();
 				//jsGFwk.Scenes.scenes.game.enable();
-				jsGFwk.Scenes.scenes.gameOver.enable();
+				//jsGFwk.Scenes.scenes.gameOver.enable();
 				jsGFwk._gameObjects.progress.destroy();
 			};
 		},

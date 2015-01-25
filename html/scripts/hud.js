@@ -4,7 +4,7 @@ var hud = {
 	fakeMouse: { x: 0, y: 0, width: 1, height: 1 },
 	soapApproachTimer: {}, soapX: 0, soapY: 500, segment: 0,
 	flashTimer: {}, transparent: 1,
-	visible: true, tapBlink: false, tiltTimer: {},
+	visible: true, tapBlink: false, tiltTimer: {}, brilloFlag: false,
 	showMano: false, handAngle: 0, handAngleCounter: 0.1,
 	init: function () {
 		jsGFwk.ResourceManager.sounds.musica.audio.volume = 0.2;
@@ -19,6 +19,7 @@ var hud = {
 		this.segment = 0;
 		this.showMano = false;
 		this.soapY = 500;
+		this.brilloFlag = false;
 		
 		this.mouseClickId = jsGFwk.IO.mouse.registerClick(function (coord) {
 			self.fakeMouse.x = coord.x;
@@ -105,13 +106,15 @@ var hud = {
 		this.tiltTimer.tick(delta);
 		if (this.segment < 1) {
 			this.soapApproachTimer.tick(delta);
-		} else/* if (!this.showMano) */{
+		} else {
+			if (!this.brilloFlag) {
+				jsGFwk.ResourceManager.sounds.brillo.audio.play();
+				this.brilloFlag = true;
+			}
 			if (this.transparent >= 0) {
 				this.showMano = true;
 				this.transparent -= 0.01;
 			}
-			//this._drawPointer = this._drawFlashPointer;
-			//this._updatePointer = this._updateFlash;
 		}
 	},
 	_updateFlash: function (delta) {
