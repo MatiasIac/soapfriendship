@@ -14,7 +14,9 @@ var player = {
 	currentImageCollection: null,
 	button: null,
 	onInit: function (settings) {
+		this._censorshipOffset = { x: 55, y: [100, 120, 130, 140, 150, 155, 165, 165]};
 		var self = this;
+		self.timer = 0;
 		self.actionKey = settings.actionKey;
 		self.x = settings.x;
 		self.y = settings.y;
@@ -69,9 +71,11 @@ var player = {
 	},
 	onUpdate: function (delta) {
 		var state = this.enabled ? "enabled" : "idle";
+		this.timer += delta * Math.random();
 		this.updateStates[state].call(this, delta);
 	},
 	onDraw: function (ctx) {
+		
 		this.currentFrame = parseInt((99 - this.soapTemptationMeter) / 100 * this.spriteBag.length);
 		var currentImage = this.spriteBag[this.currentFrame];
 		ctx.save();
@@ -81,6 +85,7 @@ var player = {
 		ctx.drawImage(currentImage.image, this.x, this.y);
 		ctx.restore();
 
+		ctx.fillRect(this.x + this._censorshipOffset.x + Math.sin(this.timer) * 3, this.y + Math.cos(this.timer) * 3+ this._censorshipOffset.y[this.currentFrame], 50, 25);
 		this.head.draw(ctx);
 		if (this.button) {
 			this.button.onDraw(ctx);
