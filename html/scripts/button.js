@@ -23,9 +23,10 @@ Button.prototype.onDraw = function(ctx) {
 	var currentImage = this.toggled ? 0 : 1;
 	ctx.save();
 	ctx.drawImage(this.spriteBag[currentImage].image, this.x, this.y);
+	ctx.textAlign = "center";
 	ctx.fillStyle = "black";
 	ctx.font = "30pt zxBold";
-	ctx.fillText(this.name, this.x, this.y);
+	ctx.fillText(this.name, this.x + 30, this.y);
 	ctx.restore();
 };
 
