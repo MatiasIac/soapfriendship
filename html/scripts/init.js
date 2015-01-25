@@ -91,7 +91,6 @@ window.onload = function init() {
 				var prisonerAtlas = util.makeAtlas(167, 275, 8, false);
 				var prisonerAtlasMirror = util.makeAtlas(167, 275, 8, true);
 				
-				
 				jsGFwk.Sprites.createSpriteCollection("prisoner1", 
 					jsGFwk.ResourceManager.graphics.prisoner1.image,
 					prisonerAtlasMirror);
@@ -142,6 +141,20 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, soap, players, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 								
+				GlobalPriosionerHeads = util.createPrisonerHeads();
+				
+				jsGFwk.Sprites.createSprite({
+					id: "player3GrayHead",
+					graphic: jsGFwk.Sprites.idle1Mirror.spriteBag[0].image,
+					left: 0, top: 0, width: 80, height: 90
+				}, jsGFwk.Sprites.filters.GRAYSCALE);
+				
+				jsGFwk.Sprites.createSprite({
+					id: "player2GrayHead",
+					graphic: jsGFwk.Sprites.idle1h2.spriteBag[0].image,
+					left: 0, top: 0, width: 80, height: 90
+				}, jsGFwk.Sprites.filters.GRAYSCALE);
+							
 				jsGFwk.Scenes.scenes.hud.enable();
 				//jsGFwk.Scenes.scenes.game.enable();
 				//jsGFwk.Scenes.scenes.gameOver.enable();

@@ -9,3 +9,10 @@ var keyMap = {
 };
 
 var players = {};
+var GlobalPriosionerHeads = null;
+var selectedPlayers = {
+	player1: true,
+	player2: false,
+	player3: false,
+	player4: true
+};

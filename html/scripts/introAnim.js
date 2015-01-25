@@ -3,6 +3,8 @@ var introAnim = {
 	soapApproachTimer: {}, soapX: 0, soapY: 500, segment: 0,
 	visible: true, angle: 0,
 	init: function () {
+		selectedPlayers.player2 = false;
+		selectedPlayers.player3 = false;
 		var self = this;
 		this.segment = 0;
 		this.soapX = 0;
@@ -46,12 +48,45 @@ var introAnim = {
 		this.particle.position.x = this.soapX;
 		this.particle.position.y = this.soapY + 100;
 		this.particle.update(delta);
+		
+		if (jsGFwk.IO.keyboard._activeKey[keyMap.F]) {
+			selectedPlayers.player2 = true;
+		}
+		
+		if (jsGFwk.IO.keyboard._activeKey[keyMap.NUM4]) {
+			selectedPlayers.player3 = true;
+		}
 	},
 	draw: function (context) {
 		context.save();
+			context.textAlign = "center";
+			context.fillStyle = "Pink";
+			context.strokeStyle = "ligthpink";
+			context.font = "30pt zxBold";
+		
 			context.drawImage(jsGFwk.ResourceManager.graphics.animBackground.image, 0, 0);
 			this.particle.renderParticles(context);
 			context.drawImage(jsGFwk.ResourceManager.graphics.animSoap.image, this.soapX, this.soapY);
+			
+			context.drawImage(jsGFwk.Sprites.idle1.spriteBag[0].image, 10, 10);
+			
+			if (!selectedPlayers.player2) {
+				context.drawImage(jsGFwk.Sprites.player2GrayHead.image, 160, 10);
+				context.strokeText("F", 200, 120);
+				context.fillText("F", 200, 120);
+			} else {
+				context.drawImage(jsGFwk.Sprites.idle1h2.spriteBag[0].image, 160, 10);
+			}
+			
+			if (!selectedPlayers.player3) {
+				context.drawImage(jsGFwk.Sprites.player3GrayHead.image, 360, 10);
+				context.strokeText("NUM4", 400, 120);
+				context.fillText("NUM4", 400, 120);
+			} else {
+				context.drawImage(jsGFwk.Sprites.idle1Mirror.spriteBag[0].image, 360, 10);
+			}
+			
+			context.drawImage(jsGFwk.Sprites.idle1Mirrorh2.spriteBag[0].image, 510, 10);			
 		context.restore();
 	},
 };
