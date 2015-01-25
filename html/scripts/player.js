@@ -25,7 +25,7 @@ var player = {
 		self.spriteBag = settings.imageCollection.spriteBag;
 		self.currentImageCollection = settings.imageCollection;
 		var bs = settings.buttonSettings;
-		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name);
+		self.button = new Button(bs.x, bs.y, jsGFwk.Sprites.button, bs.id, bs.name, this);
 		self.head = new PlayerHead(self, settings.head);
 		self.head.init();
 		self.enabled = false;
@@ -44,6 +44,7 @@ var player = {
 	},
 	updateStates: {
 		enabled: function enabled(delta) {
+			var self = this;
 			var actionKeyPressed = jsGFwk.IO.keyboard._activeKey[this.actionKey];
 			if (!this.wasActionKeyPressed && actionKeyPressed) {
 				this.soapTemptationMeter = util.wrap(this.soapTemptationMeter + 5, 0, 99);
@@ -64,10 +65,20 @@ var player = {
 				gameOverScreen.winner = this;
 				
 				players.eachCloned(function(player) {
-					player.enabled = false;
+					player.disable();
 				});
-				//jsGFwk.Scenes.scenes.gameOver.enable();
-				//players.clearAll();
+				this.enable();
+				this.head.animation = this.head.head.look4;
+				this.head.animationFrame = 0;
+				
+				this.head.onAnimationEnd = function() {
+					self.head.animate = false;
+					new Alarm(1, function endGame() {
+						players.clearAll();
+						jsGFwk.Scenes.scenes.gameOver.enable();
+					});
+				}
+				this.state = "winAnimation";
 			}
 			this.head.update(delta);
 		},
@@ -76,8 +87,8 @@ var player = {
 		
 		},
 		
-		winAnimation: function() {
-		
+		winAnimation: function(delta) {
+			this.head.update(delta);
 		}
 	
 	},
@@ -92,6 +103,10 @@ var player = {
 	
 	disable: function() {
 		this.state = "idle";
+	},
+	
+	win: function() {
+		this.state = "winAnimation";
 	},
 	
 

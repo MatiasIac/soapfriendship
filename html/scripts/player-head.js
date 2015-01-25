@@ -4,6 +4,7 @@ var PlayerHead = function(player, head) {
 	this.player = player;
 	this.inverted = head.idle1.spriteBag[0].inverted ? 1 : -1;
 	this.angle = 0;
+	this.animate = true;
 	this._headPositions = [
 		{x: 88, y: 6, angle: 0},
 		{x: 79, y: 16, angle: -1},
@@ -14,6 +15,12 @@ var PlayerHead = function(player, head) {
 		{x: 42, y: 80, angle: -4},
 		{x: 36, y: 95, angle: -4},
 	];
+};
+
+
+PlayerHead.prototype.checkWin = function() {
+
+	
 };
 
 PlayerHead.prototype.selectAnimation = function() {
@@ -32,6 +39,7 @@ PlayerHead.prototype.selectAnimation = function() {
 	}
 	this.animation = animation;
 	this.animationFrame = 0;
+	this.onAnimationEnd = this.selectAnimation;
 	return animation;
 };
 
@@ -40,9 +48,13 @@ PlayerHead.prototype.init = function() {
 	var self = this;
 	this.animationTimer = new jsGFwk.Timer({
 		action: function () {
-			self.animationFrame = (self.animationFrame + 1) % self.animation.spriteBag.length;
-			if (self.animationFrame === 0) {
-				self.selectAnimation();	
+			if (!self.animate) {
+				return;	
+			}
+			if (self.animationFrame === self.animation.spriteBag.length - 1 && self.onAnimationEnd) {
+				self.onAnimationEnd();	
+			} else {
+				self.animationFrame = (self.animationFrame + 1) % self.animation.spriteBag.length;
 			}
 		},
 		//Player ducking speed. Recommended: 5

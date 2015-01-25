@@ -117,7 +117,7 @@ window.onload = function init() {
 	
 				players = jsGFwk.Container.createContainer("players", player);
 				
-				var timer = new StartGameTimer(5, 50, function startCallback() {
+				var timer = new StartGameTimer(5, 20, function startCallback() {
 					players.eachCloned(function(clone) {
 						clone.enable();
 					});
@@ -128,9 +128,9 @@ window.onload = function init() {
 				jsGFwk.Scenes.create({name: "game", gameObjects: [background, playerController, players, soap, timer] });	
 				jsGFwk.Scenes.create({name: "gameOver", gameObjects: [gameOverScreen] });
 				
-				jsGFwk.Scenes.scenes.hud.enable();
-				//jsGFwk.Scenes.scenes.game.enable();
-				jsGFwk._gameObjects.progress.destroy();
+				//jsGFwk.Scenes.scenes.hud.enable();
+				jsGFwk.Scenes.scenes.game.enable();
+				//jsGFwk._gameObjects.progress.destroy();
 			};
 		},
 		update: function (delta) { },

@@ -1,6 +1,7 @@
 var buttonCounter = 0;
 
-var Button = function(x, y, imageCollection, id, name) {
+var Button = function(x, y, imageCollection, id, name, player) {
+	this.player = player;
 	this.id = id || "button " + this.buttonCounter++;
 	this.visible = true;
 	this.x = x;
@@ -27,7 +28,17 @@ Button.prototype.onDraw = function(ctx) {
 	ctx.fillStyle = "black";
 	ctx.font = "30pt zxBold";
 	ctx.fillText(this.name, this.x + 30, this.y);
+	
+	ctx.fillStyle = "#FF0000";
+	ctx.fillRect(this.x + 80, this.y, 10, 50);
+	ctx.fillStyle = "#00FF00";
+	ctx.fillRect(this.x + 65, this.y, 10, 50);
+
+	
+	
 	ctx.restore();
+	
+	
 };
 
 Button.prototype.toggle = function() {
