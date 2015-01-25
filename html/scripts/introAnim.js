@@ -25,6 +25,11 @@ var introAnim = {
 				self.soapX = point.x;
 				self.soapY = point.y;
 				
+				if (self.segment > 0.55 &&
+					self.segment < 0.555) {
+					jsGFwk.ResourceManager.sounds.jabon.audio.play();
+				}
+				
 				if (self.segment >= 1) {
 					jsGFwk.Scenes.scenes.game.enable();
 				}

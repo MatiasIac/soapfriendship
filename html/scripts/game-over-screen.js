@@ -11,6 +11,7 @@ var GameOverScreen = function () {
 GameOverScreen.prototype.init = function() {
 	var self = this;
 	jsGFwk.Collisions.onObjectCreated(this.fakeMouse);
+	jsGFwk.ResourceManager.sounds.shower.audio.pause();
 	
 	this.mouseClickId = jsGFwk.IO.mouse.registerClick(function (coord) {
 		self.fakeMouse.x = coord.x;

@@ -39,6 +39,16 @@ window.onload = function init() {
 		brillo[jsGFwk.ResourceManager.sounds.format.mp3] = { source: "sounds/brillo.mp3" };
 	jsGFwk.ResourceManager.addSound({ name: "brillo", sources: brillo });
 	
+	var jabon = {};
+		jabon[jsGFwk.ResourceManager.sounds.format.ogg] = { source: "sounds/jabon.ogg" };
+		jabon[jsGFwk.ResourceManager.sounds.format.mp3] = { source: "sounds/jabon.mp3" };
+	jsGFwk.ResourceManager.addSound({ name: "jabon", sources: jabon });
+	
+	var showerSound = {};
+		showerSound[jsGFwk.ResourceManager.sounds.format.ogg] = { source: "sounds/shower.ogg" };
+		showerSound[jsGFwk.ResourceManager.sounds.format.mp3] = { source: "sounds/shower.mp3" };
+	jsGFwk.ResourceManager.addSound({ name: "shower", sources: showerSound });
+	
 	jsGFwk.ResourceManager.addGraphic({	name: "loadingSoap", source: "images/loadingSoap.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubSprite", source: "images/hudMainSprites.png" });
 	jsGFwk.ResourceManager.addGraphic({	name: "hubBackground", source: "images/hudBackground.png" });
